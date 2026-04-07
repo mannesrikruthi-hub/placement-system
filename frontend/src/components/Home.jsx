@@ -20,7 +20,7 @@ export default function Home({ students, setStudents }) {
   }
   const analyze = async () => {
   try {
-    const response = await fetch("https://placement-backend-xxxx.onrender.com/api/analyze", {
+    const response = await fetch("https://placement-backend-6hdm.onrender.com/api/analyze", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
