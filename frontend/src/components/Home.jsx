@@ -18,30 +18,28 @@ export default function Home({ students, setStudents }) {
   const handleChange=(e)=>{
     setForm({...form,[e.target.name]:e.target.value});
   }
-  const analyze = async () => {
-  try {
-    const response = await fetch("https://placement-backend-6hdm.onrender.com/api/analyze", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(form)
-    });
+  const analyze = () => {
+  const coding = Number(form.coding);
+  const aptitude = Number(form.aptitude);
+  const communication = Number(form.communication);
 
-    const data = await response.json();
+  const total = coding + aptitude + communication;
 
-    // backend will send result
-    setResult(data.result);
-    setSuggestion(data.suggestion);
+  let resultText = "";
+  let suggestionText = "";
 
-    setStudents([...students, data]);
-
-  } catch (error) {
-    console.error("Error:", error);
+  if (total >= 200) {
+    resultText = "Eligible ✅";
+    suggestionText = "Great! You are ready for placements 🚀";
+  } else {
+    resultText = "Not Eligible ❌";
+    suggestionText = "Improve coding, aptitude and communication skills.";
   }
+
+  setResult("Total: " + total + " → " + resultText);
+  setSuggestion(suggestionText);
 };
 
- 
 
   return (
     <div style={{padding:'30px',background:'#0f172a',minHeight:'100vh',color:'white'}}>
