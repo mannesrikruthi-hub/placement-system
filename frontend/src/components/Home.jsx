@@ -62,9 +62,9 @@ export default function Home({ students, setStudents }) {
         <input type="file" onChange={(e)=>setResume(e.target.files[0])}/>
         {resume && <p style={{color:'lightgreen'}}>{resume.name}</p>}
 
-        <button onClick={analyze} style={{marginTop:'10px',padding:'10px',background:'#22c55e',color:'white'}}>
-          Analyze
-        </button>
+        <div onClick={() => alert("Working")} style={{background:"green",padding:"10px",cursor:"pointer"}}>
+  Click Me
+</div>
 
         {result && <p style={{marginTop:'10px'}}>{result}</p>}
 
