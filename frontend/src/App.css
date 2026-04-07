@@ -1,0 +1,40 @@
+
+.dashboard {
+  padding: 30px;
+  background: #0f172a;
+  min-height: 100vh;
+  color: white;
+}
+
+.stats {
+  display: flex;
+  gap: 20px;
+}
+
+.card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  flex: 1;
+}
+
+.table-box {
+  margin-top: 30px;
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+.status.Eligible {
+  background: #22c55e;
+  color: black;
+}
+
+.status.NotEligible {
+  background: #ef4444;
+}
