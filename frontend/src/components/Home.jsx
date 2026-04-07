@@ -18,32 +18,30 @@ export default function Home({ students, setStudents }) {
   const handleChange=(e)=>{
     setForm({...form,[e.target.name]:e.target.value});
   }
+  const analyze = async () => {
+  try {
+    const response = await fetch("https://placement-backend-xxxx.onrender.com/api/analyze", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(form)
+    });
 
-  const analyze=()=>{
-    const total = Number(form.coding)+Number(form.aptitude)+Number(form.communication);
-    let status="Not Eligible";
-    let suggest="";
+    const data = await response.json();
 
-    if(total>=200 && form.skills && form.internship){
-      status="Eligible";
-      suggest="You are ready for placements 🚀";
-    } else {
-      status="Not Eligible";
-      suggest = `
-Roadmap to Improve:
-• Improve coding skills (DSA, LeetCode)
-• Practice aptitude daily
-• Work on communication skills
-• Complete at least 1 internship
-• Build 2-3 real-time projects
-`;
-    }
+    // backend will send result
+    setResult(data.result);
+    setSuggestion(data.suggestion);
 
-    setResult("Total Score: "+total+" → "+status);
-    setSuggestion(suggest);
+    setStudents([...students, data]);
 
-    setStudents([...students,{...form,status,total}]);
+  } catch (error) {
+    console.error("Error:", error);
   }
+};
+
+ 
 
   return (
     <div style={{padding:'30px',background:'#0f172a',minHeight:'100vh',color:'white'}}>
