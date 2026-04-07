@@ -19,6 +19,8 @@ export default function Home({ students, setStudents }) {
     setForm({...form,[e.target.name]:e.target.value});
   }
   const analyze = () => {
+    alert("Button clicked");
+  };
   const coding = Number(form.coding);
   const aptitude = Number(form.aptitude);
   const communication = Number(form.communication);
